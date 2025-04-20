@@ -1,14 +1,9 @@
-var swiper = new Swiper(".mySwiper", {
-  autoplay:{
-      delay:4000,
-      disableOnInteraction:
-      false,
-  },
-  loop:true
-});
+
+
+
 
 // nav1
-const dropdownLink =  document.querySelectorAll('.dropdown')
+const dropdownLink = document.querySelectorAll('.dropdown')
 const clickLi = document.querySelectorAll('.li-link')
 const arrowLi = document.querySelectorAll('.arrow-li')
 
@@ -22,18 +17,20 @@ const sideBar = document.querySelector('.side-menu')
 const closeIcon = document.querySelector('.close-icon')
 
 
-
+// scroll nav
+const Nav = document.querySelector('nav')
+const scrollNav = document.querySelector('.nav-scroll')
 
 //nav1
 clickLi[0].addEventListener("click", () => {
-    dropdownLink[0].classList.toggle("hidden");
-    dropdownLink[1].classList.add("hidden");
-  });
-  clickLi[1].addEventListener("click", () => {
-    dropdownLink[1].classList.toggle("hidden");
-    dropdownLink[0].classList.add("hidden");
-  });
- 
+  dropdownLink[0].classList.toggle("hidden");
+  dropdownLink[1].classList.add("hidden");
+});
+clickLi[1].addEventListener("click", () => {
+  dropdownLink[1].classList.toggle("hidden");
+  dropdownLink[0].classList.add("hidden");
+});
+
 dropdownLink.forEach((toggle, index) => {
   toggle.addEventListener("click", (e) => {
     // e.stopPropagation();      // برای جلوگیری از بستن منو هنگام کلیک روی خودش
@@ -44,22 +41,31 @@ dropdownLink.forEach((toggle, index) => {
 
 //menu2
 menu.addEventListener("click", () => {
-  sideBar.style.transform =  "translateX(0)";
+  sideBar.style.transform = "translateX(0)";
 })
 closeIcon.addEventListener('click', () => {
-  sideBar.style.transform =  "translateX(500px)";
-  
+  sideBar.style.transform = "translateX(500px)";
+
 })
 document.addEventListener('click', (e) => {
-  if(
+  if (
     !sideBar.contains(e.target) &&
     !menu.contains(e.target) &&
     !closeIcon.contains(e.target)
   ) {
-    sideBar.style.transform =  "translateX(500px)";
+    sideBar.style.transform = "translateX(500px)";
   }
 })
 
+//scroll nav3 
+document.addEventListener("scroll", () => {
+  console.log(document.documentElement.scrollTop);
+  if (document.documentElement.scrollTop > 70) {
+    Nav.classList.add("scroll-nav")
+  } else {
+    Nav.classList.remove("scroll-nav");
+  }
+})
 
 
 // این فانکشن برای بستن هر منوی بازی استفاده میشه
@@ -74,3 +80,54 @@ document.addEventListener("click", (e) => {
   });
 });
 
+
+//first slidder set 4
+var swiper = new Swiper(".mySwiper", {
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction:
+      false,
+  },
+  loop: true
+});
+
+
+//secend slider set 5
+var swiper = new Swiper(".my ", {
+  slidesPerView: 1.6,
+  spaceBetween: 20,
+  freeMode: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+
+
+  //secend sliders breakpoint 6
+  breakpoints: {
+    478: {
+      slidesPerView: 1.6,
+    },
+    650:{
+      slidesPerView: 2  ,
+    },
+    768: {
+      slidesPerView: 3  ,
+    },
+    968: {
+      slidesPerView: 3.5,
+    },
+    980: {
+      slidesPerView: 4,
+    },
+    1000: {
+      slidesPerView: 4.1    ,
+    },
+    1300: {
+      slidesPerView: 5    ,
+    },
+    1650: {
+      slidesPerView: 6.5    ,
+    },
+  },
+});

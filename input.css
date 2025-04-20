@@ -16,7 +16,11 @@
     src: url(./assets/fonts/IRANSansX-Light.woff) format('woff');
     font-weight: normal;
 }
-
+html,
+body {
+    position: relative;
+    height: 100%;
+}
 body,
 a,
 li,
@@ -29,20 +33,36 @@ h5,
 h6 {
     font-family: ' IRANSansX-Light';
 }
-
-html,
-body {
-    position: relative;
-    height: 100%;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+p,
+svg{
+    cursor: pointer;
+    color: white;
 }
-
+:root{
+    --body--background--: #000;
+    --font-color:#ccc;
+    --normal-font-size:14px;
+}
 body {
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    color: #000;
+    font-size: var(--normal-font-size);
+    color: var(--font-color);
     margin: 0;
     padding: 0;
+    height: 4000px;
 }
+#slider-w-fix{
+    height: 200px;
+}
+
 
 .swiper {
     width: 100%;
@@ -108,37 +128,20 @@ body,
     padding: 0;
     
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-a,
-li,
-p,
-svg{
-    cursor: pointer;
-    color: white;
-}
-
 a {
     position: relative;
     text-decoration: none;
     color: white;
     font-weight: 700;
 }
-
 .bar {
     margin: 2px;
     border: 1px solid black;
 }
-
 .main-logo {
     padding-right: 15px;
     margin-top: 5px;
 }
-
 .arrow-li {
     width: 7px;
     height: 7px;
@@ -149,11 +152,9 @@ a {
     transition: all linear 0.2s;
     display: inline;
 }
-
 .rotate45 {
     transform: rotate(45deg);
 }
-
 .button-nav-vrod {
     border-radius: 10px;
     font-size: 13px;
@@ -165,7 +166,6 @@ a {
     -webkit-backdrop-filter: blur(14.2px);
     position: relative;
 }
-
 .button-nav-download {
     border-radius: 6px;
     font-size: 13px;
@@ -176,7 +176,6 @@ a {
     -webkit-backdrop-filter: blur(14.2px);
     position: relative;
 }
-
 .show {
     display: flex;
 }
@@ -185,7 +184,6 @@ header {
     width: 100%;
     position: fixed;
 }
-
 .container-1 {
     padding: 0 14px 0 14px;
 }
@@ -193,16 +191,13 @@ header {
 .container2 {
     padding: 0 44px 0 44px;
 }
-
 .button-ashterak {
     border-radius: 10px;
     font-size: 13px;
     color: #fff;
     background-color: rgb(10, 161, 10);
     position: relative;
-
 }
-
 .button-nav-vrod::before {
     content: "";
     position: absolute;
@@ -215,11 +210,9 @@ header {
     transition: all linear 0.2s;
     border-radius: 18px;
 }
-
 .button-nav-vrod:hover::before {
     width: 100%;
 }
-
 .button-nav-download::before {
     content: "";
     position: absolute;
@@ -232,112 +225,103 @@ header {
     transition: all linear 0.3s;
     border-radius: 10px;
 }
-
 .hide {
     display: none;
 }
-
 .button-nav-download:hover::before {
     width: 100%;
 }
-
 .open-menu li {
     margin-right: 35px;
 }
-
 nav {
     padding: 0 14px 0 14px;
-    z-index: 100px;
-    position: absolute;
+    z-index: 100;
+    position: relative;
+    transition: all linear 0.3s;
 }
-
+.scroll-nav{
+    backdrop-filter: blur(10px);
+    background-color: #00000062;
+    padding-right: 1%;
+    width: 95%;
+    border-radius: 20px;
+    margin-top: 5px;
+    
+}
+#slider-w-fix{
+    padding: 0 14px 0 14px;
+    
+    padding-right: 4%;
+}
 .side-menu {
     position: absolute;
     transition: 1.2s;
     transform: translateX(500px);
     transition: all ease-out 0.5s;
+    z-index: 3000;
 }
-
 .ham-menu li {
     margin-right: 20px;
     padding: 15px 10px 15px 10px;
     font-size: 17px;
 }
-
 .menu-li-link {
     margin-top: 28px;
     font-size: 17px;
 
 }
-
 .a-space-link {
     padding: 10px 0 10px 100%;
     width: 50px;
     border: 0;
-
-
 }
-
 header {
-    position: relative;
-    z-index: 10;
+    position: fixed;
+    
+    z-index: 1000   ;
 }
-
 .swiper {
     height: 50vh;
 }
-
 .mySwiper {
     position: relative;
     z-index: 1;
 }
-
 .swiper-wrapper {
     position: relative;
     z-index: 1;
 }
-
 .side-menu {
     background-color: #16171A;
 }
-
 .first-slider-info img {
     width: 120px;
 }
-
 .first-slider-info h1 {
     margin-top: 10px;
 }
-
 .first-slider-info a {
     font-size: 14px;
     font-weight: normal;
 }
-
 .first-slider-info a:hover {
     color: rgb(10, 161, 10);
 }
-
 .first-slider-info svg {
     margin-left: 3px;
-
 }
-
 .first-slider-info {
     position: absolute;
     bottom: 10px;
-
 }
-
 .movie-info-md p {
     padding: 0 10px 0 10px;
 
 }
-
 .imdb-grade {
     margin-right: -3px;
 }
-
 .movie-info-md svg {
     cursor: pointer;
     margin-right: 3px;
@@ -423,22 +407,56 @@ video{
     object-fit: cover;
     border-radius: 10px;
 }
+.slider-card-link img{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 70%;
+    border-radius: 14px;
+}
+.slider-card-link p{
+    color: white;
+    z-index: 200;
+    margin-top: 150px;
+
+}
+.slider-card-link{
+    border-radius: 15px;
+    height: 300px;
+    background-color:  black;
+    position: relative;
+    margin-bottom:50px ;
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+    
+}
+
+#slider-w-fix>h1{
+    font-size: 20px;
+    letter-spacing: 1px;
+
+}
+#slider-w-fix{
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+.hover-li-link-1:hover .dropdown1 ,.hover-li-link-2:hover .dropdown2{
+    display: flex;
+}
 @media screen and (min-width: 768px) {
     nav {
         padding: 0 24px 0 24px;
     }
-    
     .swiper {
         height: 100vh;
     }
-    
     .first-slider-info {
         position: absolute;
         bottom: 16%;
         right: 40px;
-        
     }
-    
     .more-info-slider{
         margin-top: 30px;
     }
@@ -451,7 +469,6 @@ video{
         font-size: 28px;
         font-weight: 600;
     }
-
     .first-slider-info a {
         font-size: 18px;
         font-weight: normal;
@@ -473,6 +490,12 @@ video{
     }
     .card__link:hover .im:not(:hover){
         width: 10%;
+    }
+    #slider-w-fix{
+        padding-right: 5%;
+    }
+    #slider-w-fix{
+        margin-top: 0px;
     }
 }
 
@@ -514,7 +537,12 @@ video{
     .card__link div h2{
         font-size: 22px;
     }
+    .scroll-nav{
+        padding-right: 1.5%;
+      
     
+    }
+  
 }
 
 @media screen and (min-width: 1400px) {
@@ -545,7 +573,7 @@ video{
     nav {
         padding: 0 64px 0 64px;
     }
-
+   
     .dropdown1 {
         right: 165px;
     }
@@ -573,7 +601,6 @@ video{
     nav {
         padding: 0 74px 0 74px;
     }
-
     .dropdown1 {
         right: 175px;
     }
@@ -584,9 +611,27 @@ video{
     .container:hover .card__link:not(:hover){
         width: 14%;
     }
+    .scroll-nav{
+        padding-right: 1.6%;
+    }
+}
+@media screen and (min-width: 1890px){
+    .scroll-nav{
+        padding-right: 1.8%;
+      
+    
+    }
 }
 @media screen and (min-width: 2000px){
     .container:hover .card__link:not(:hover){
         width: 15%;
+    }
+    .scroll-nav{
+        padding-right: 1.8%;
+    }
+}
+@media screen and (min-width: 2400px){
+    .scroll-nav{
+        padding-right: 1.9%;
     }
 }
