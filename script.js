@@ -42,9 +42,11 @@ dropdownLink.forEach((toggle, index) => {
 //menu2
 menu.addEventListener("click", () => {
   sideBar.style.transform = "translateX(0)";
+  document.body.classList.add("no-scroll")
 })
 closeIcon.addEventListener('click', () => {
   sideBar.style.transform = "translateX(500px)";
+  document.body.classList.remove("no-scroll")
 
 })
 document.addEventListener('click', (e) => {
@@ -54,6 +56,7 @@ document.addEventListener('click', (e) => {
     !closeIcon.contains(e.target)
   ) {
     sideBar.style.transform = "translateX(500px)";
+    document.body.classList.remove("no-scroll")
   }
 })
 
@@ -117,12 +120,8 @@ var swiper = new Swiper(".my ", {
     968: {
       slidesPerView: 3.5,
     },
-    980: {
-      slidesPerView: 4,
-    },
-    1000: {
-      slidesPerView: 4.1    ,
-    },
+   
+   
     1300: {
       slidesPerView: 5    ,
     },
