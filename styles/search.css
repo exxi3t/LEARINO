@@ -8,9 +8,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-image:
-        /* radial-gradient(circle at 25% 25%, rgba(20, 20, 40, 0.8) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(40, 20, 60, 0.6) 0%, transparent 50%); */
+    
 }
 
 .container-search {

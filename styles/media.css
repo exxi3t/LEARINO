@@ -3,7 +3,6 @@
     nav {
         padding: 0 24px 0 24px;
     }
-
     .swiper {
         height: 100vh;
     }
@@ -234,3 +233,10 @@
         padding-right: 1.9%;
     }
 }
+  /* Responsive */
+        @media (max-width: 480px) {
+            .auth-box {
+                padding: 20px;
+                width: 95%;
+            }
+        }

@@ -37,8 +37,6 @@ h5 {
 
 
 
-
-
 .show {
     display: flex;
 }
@@ -68,6 +66,7 @@ svg {
 body {
     font-size: var(--normal-font-size);
     color: var(--font-color);
+    min-height: 100vh;
     
 }
 

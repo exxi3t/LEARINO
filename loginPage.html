@@ -6,1241 +6,192 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ورود به LEARINO</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #4a6fa5;
-            --secondary-color: #166088;
-            --accent-color: #00ccff;
-            --background-color: #000;
-            --card-color: rgba(20, 20, 40, 0.8);
-            --text-color: #ffffff;
-            --success-color: #4CAF50;
-            --error-color: #f44336;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            height: 100vh;
-            background-image:
-                radial-gradient(circle at 25% 25%, rgba(20, 20, 40, 0.8) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(40, 20, 60, 0.6) 0%, transparent 50%);
-            overflow: hidden;
-        }
-
-        .particles {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(100, 100, 255, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-1000px) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-        }
-
-        .auth-box {
-            background: rgba(20, 20, 40, 0.8);
-            border-radius: 15px;
-            padding: 30px;
-            width: 90%;
-            max-width: 450px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .logo h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(45deg, #ff00cc, #3333ff, #00ccff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: 700;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-        }
-
-        .logo p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 15px 15px 15px 40px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(30, 30, 60, 0.5);
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
-            direction: ltr;
-            text-align: right;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.2);
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 40px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .btn {
-            width: 100%;
-            padding: 15px;
-            border-radius: 8px;
-            border: none;
-            background: linear-gradient(45deg, #ff00cc, #3333ff);
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(100, 100, 255, 0.3);
-        }
-
-        .btn:disabled {
-            background: rgba(255, 255, 255, 0.1);
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .links {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-
-        .links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .links a:hover {
-            text-decoration: underline;
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 20px 0;
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.8rem;
-        }
-
-        .divider::before,
-        .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .divider::before {
-            margin-right: 10px;
-        }
-
-        .divider::after {
-            margin-left: 10px;
-        }
-
-        .captcha-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .captcha-box {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(30, 30, 60, 0.5);
-            padding: 10px 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .captcha-text {
-            font-weight: bold;
-            letter-spacing: 2px;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            user-select: none;
-        }
-
-        .refresh-captcha {
-            color: var(--accent-color);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .refresh-captcha:hover {
-            transform: rotate(90deg);
-        }
-
-        .code-input {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-
-        .code-input input {
-            flex: 1;
-            text-align: center;
-            font-size: 1.2rem;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(30, 30, 60, 0.5);
-            color: white;
-            direction: ltr;
-            width: 50px;
-        }
-
-        .resend-code {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .resend-code a {
-            color: var(--accent-color);
-            cursor: pointer;
-        }
-
-        .resend-code .timer {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 15px 25px;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            animation: fadeIn 0.5s, fadeOut 0.5s 3.5s forwards;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: none;
-        }
-
-        .notification.success {
-            background: rgba(76, 175, 80, 0.9);
-        }
-
-        .notification.error {
-            background: rgba(244, 67, 54, 0.9);
-        }
-
-        /* Loading spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Tabs */
-        .auth-tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .auth-tab {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-            cursor: pointer;
-            color: rgba(255, 255, 255, 0.6);
-            transition: all 0.3s;
-            border-bottom: 2px solid transparent;
-        }
-
-        .auth-tab.active {
-            color: var(--accent-color);
-            border-bottom-color: var(--accent-color);
-        }
-
-        /* Password toggle */
-        .password-toggle {
-            position: absolute;
-            left: 15px;
-            top: 40px;
-            color: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 480px) {
-            .auth-box {
-                padding: 20px;
-                width: 95%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./styles/login.css">    
 </head>
 
 <body>
     <div class="particles" id="particles"></div>
+<!-- عناصر پس زمینه -->
+    <div class="stars" id="stars"></div>
+    <div class="planet" id="planet1"></div>
+    <div class="planet" id="planet2"></div>
 
-    <div class="container">
-        <!-- Login Box -->
-        <div class="auth-box" id="loginBox">
-            <div class="auth-tabs">
-                <div class="auth-tab active" id="loginTab">ورود</div>
-                <div class="auth-tab" id="registerTab">ثبت نام</div>
+    <!-- کانتینر اصلی -->
+    <div class="auth-container">
+        <!-- پیام موفقیت -->
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i> حساب کاربری با موفقیت ایجاد شد!
+        </div>
+
+        <!-- فرم لاگین -->
+        <div class="form active" id="loginForm">
+            <div class="form-header">
+                <h2>خوش برگشتی!</h2>
+                <p>لطفاً اطلاعات حساب خود را وارد کنید</p>
             </div>
 
-            <div class="logo">
-                <h1>LEARINO</h1>
-                <p>سامانه یادگیری زبان انگلیسی</p>
+            <div class="input-group">
+                <input type="text" id="loginUsername" class="input-field" placeholder=" " required>
+                <i class="fas fa-user input-icon"></i>
+                <label for="loginUsername" class="input-label">نام کاربری یا ایمیل</label>
+                <div class="error-message" id="loginUsernameError"></div>
             </div>
 
-            <!-- Login Form -->
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginPhone">شماره موبایل یا نام کاربری</label>
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" id="loginPhone" class="form-control" placeholder="09123456789 یا username"
-                        required>
-                </div>
+            <div class="input-group">
+                <input type="password" id="loginPassword" class="input-field" placeholder=" " required>
+                <i class="fas fa-lock input-icon"></i>
+                <label for="loginPassword" class="input-label">رمز عبور</label>
+                <i class="fas fa-eye toggle-password" id="toggleLoginPassword"></i>
+                <div class="error-message" id="loginPasswordError"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="loginPassword">رمز عبور</label>
-                    <i class="fas fa-lock input-icon"></i>
-                    <i class="fas fa-eye password-toggle" id="loginPasswordToggle"></i>
-                    <input type="password" id="loginPassword" class="form-control" placeholder="رمز عبور" required>
-                </div>
+            <div class="forgot-password">
+                <a href="#" id="forgotPasswordLink">
+                    <i class="fas fa-question-circle"></i> رمز عبورم را فراموش کرده‌ام
+                </a>
+            </div>
 
-                <div class="links">
-                    <a href="#" id="forgotPasswordLink">فراموشی رمز عبور</a>
-                </div>
+            <button class="btn" id="loginBtn">
+                <i class="fas fa-sign-in-alt"></i> ورود به حساب
+            </button>
 
-                <button type="button" id="loginBtn" class="btn">
-                    <span id="loginText">ورود به حساب</span>
-                    <span id="loginSpinner" class="spinner" style="display: none;"></span>
-                </button>
-            </form>
-
-            <div class="divider">یا</div>
-
-            <div class="links">
-                حساب کاربری ندارید؟ <a href="#" id="registerLink">ثبت نام کنید</a>
+            <div class="form-footer">
+                حساب کاربری ندارید؟ <a href="#" id="showRegister">ثبت نام کنید</a>
             </div>
         </div>
 
-        <!-- Register Box -->
-        <div class="auth-box" id="registerBox" style="display: none;">
-            <div class="auth-tabs">
-                <div class="auth-tab" id="backToLoginTab">ورود</div>
-                <div class="auth-tab active">ثبت نام</div>
+        <!-- فرم ثبت نام -->
+        <div class="form" id="registerForm">
+            <div class="form-header">
+                <h2>ثبت نام کاربر جدید</h2>
+                <p>لطفاً اطلاعات مورد نیاز را وارد کنید</p>
             </div>
 
-            <div class="logo">
-                <h1>LEARINO</h1>
-                <p>سامانه یادگیری زبان انگلیسی</p>
+            <div class="input-group">
+                <input type="text" id="registerUsername" class="input-field" placeholder=" " required>
+                <i class="fas fa-user-tag input-icon"></i>
+                <label for="registerUsername" class="input-label">نام کاربری</label>
+                <div class="error-message" id="registerUsernameError"></div>
             </div>
 
-            <!-- Register Form -->
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="fullName">نام کامل</label>
-                    <i class="fas fa-user input-icon"></i>
-                    <input type="text" id="fullName" class="form-control" placeholder="نام و نام خانوادگی" required>
-                </div>
+            <div class="input-group">
+                <input type="tel" id="registerPhone" class="input-field" placeholder=" " required>
+                <i class="fas fa-mobile-alt input-icon"></i>
+                <label for="registerPhone" class="input-label">شماره موبایل</label>
+                <div class="error-message" id="registerPhoneError"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="username">نام کاربری</label>
-                    <i class="fas fa-at input-icon"></i>
-                    <input type="text" id="username" class="form-control" placeholder="username" required>
-                </div>
+            <div class="input-group">
+                <input type="email" id="registerEmail" class="input-field" placeholder=" ">
+                <i class="fas fa-envelope input-icon"></i>
+                <label for="registerEmail" class="input-label">ایمیل (اختیاری)</label>
+                <div class="error-message" id="registerEmailError"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="registerPhone">شماره موبایل</label>
-                    <i class="fas fa-phone input-icon"></i>
-                    <input type="tel" id="registerPhone" class="form-control" placeholder="09123456789" required>
-                </div>
+            <div class="input-group">
+                <input type="password" id="registerPassword" class="input-field" placeholder=" " required>
+                <i class="fas fa-lock input-icon"></i>
+                <label for="registerPassword" class="input-label">رمز عبور</label>
+                <i class="fas fa-eye toggle-password" id="toggleRegisterPassword"></i>
+                <div class="error-message" id="registerPasswordError"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="registerPassword">رمز عبور</label>
-                    <i class="fas fa-lock input-icon"></i>
-                    <i class="fas fa-eye password-toggle" id="registerPasswordToggle"></i>
-                    <input type="password" id="registerPassword" class="form-control" placeholder="حداقل ۸ کاراکتر"
-                        required>
-                </div>
+            <div class="input-group">
+                <input type="password" id="registerConfirmPassword" class="input-field" placeholder=" " required>
+                <i class="fas fa-lock input-icon"></i>
+                <label for="registerConfirmPassword" class="input-label">تکرار رمز عبور</label>
+                <i class="fas fa-eye toggle-password" id="toggleRegisterConfirmPassword"></i>
+                <div class="error-message" id="registerConfirmPasswordError"></div>
+            </div>
 
-                <div class="form-group">
-                    <label for="confirmPassword">تکرار رمز عبور</label>
-                    <i class="fas fa-lock input-icon"></i>
-                    <i class="fas fa-eye password-toggle" id="confirmPasswordToggle"></i>
-                    <input type="password" id="confirmPassword" class="form-control" placeholder="تکرار رمز عبور"
-                        required>
-                </div>
+            <button class="btn" id="registerBtn">
+                <i class="fas fa-user-plus"></i> ثبت نام
+            </button>
 
-                <div class="captcha-container">
-                    <div class="captcha-box">
-                        <span class="captcha-text" id="captchaText"></span>
-                        <i class="fas fa-sync-alt refresh-captcha" id="refreshCaptcha"></i>
-                    </div>
-                    <input type="text" id="captchaInput" class="form-control" placeholder="کد امنیتی را وارد کنید"
-                        required>
-                </div>
-
-                <button type="button" id="registerBtn" class="btn">
-                    <span id="registerText">ثبت نام</span>
-                    <span id="registerSpinner" class="spinner" style="display: none;"></span>
-                </button>
-            </form>
-
-            <!-- Register Verify Code -->
-            <div id="registerVerifySection" style="display: none;">
-                <div class="divider">کد تأیید را وارد کنید</div>
-                <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">
-                    کد ۵ رقمی به شماره <span id="registerPhoneDisplay" style="color: var(--accent-color);"></span> ارسال
-                    شد
-                </p>
-
-                <div class="form-group">
-                    <label for="registerCode">کد تأیید</label>
-                    <div class="code-input">
-                        <input type="text" maxlength="1" class="register-code-digit" required>
-                        <input type="text" maxlength="1" class="register-code-digit" required>
-                        <input type="text" maxlength="1" class="register-code-digit" required>
-                        <input type="text" maxlength="1" class="register-code-digit" required>
-                        <input type="text" maxlength="1" class="register-code-digit" required>
-                    </div>
-                </div>
-
-                <div class="resend-code">
-                    <span class="timer" id="registerTimer">02:00</span>
-                    <a id="resendRegisterCodeBtn" style="display: none;">ارسال مجدد کد</a>
-                </div>
-
-                <button type="button" id="verifyRegisterBtn" class="btn">
-                    <span id="verifyRegisterText">تأیید و تکمیل ثبت نام</span>
-                    <span id="verifyRegisterSpinner" class="spinner" style="display: none;"></span>
-                </button>
+            <div class="form-footer">
+                قبلاً ثبت نام کرده‌اید؟ <a href="#" id="showLogin">وارد شوید</a>
             </div>
         </div>
 
-        <!-- Forgot Password Box -->
-        <div class="auth-box" id="forgotPasswordBox" style="display: none;">
-            <div class="logo">
-                <h1>LEARINO</h1>
-                <p>بازیابی رمز عبور</p>
+        <!-- فرم فراموشی رمز عبور -->
+        <div class="form" id="forgotPasswordForm">
+            <div class="form-header">
+                <h2>بازیابی رمز عبور</h2>
+                <p>لطفاً شماره موبایل خود را وارد کنید</p>
             </div>
 
-            <!-- Forgot Password Step 1: Enter Phone -->
-            <form id="forgotPasswordForm" style="display: block;">
-                <div class="form-group">
-                    <label for="forgotPhone">شماره موبایل</label>
-                    <i class="fas fa-phone input-icon"></i>
-                    <input type="tel" id="forgotPhone" class="form-control" placeholder="09123456789" required>
-                </div>
-
-                <button type="button" id="sendResetCodeBtn" class="btn">
-                    <span id="sendResetCodeText">ارسال کد بازیابی</span>
-                    <span id="sendResetCodeSpinner" class="spinner" style="display: none;"></span>
-                </button>
-
-                <div class="links">
-                    <a href="#" id="backToLoginFromForgot">بازگشت به صفحه ورود</a>
-                </div>
-            </form>
-
-            <!-- Forgot Password Step 2: Verify Code -->
-            <div id="verifyResetCodeSection" style="display: none;">
-                <div class="divider">کد بازیابی را وارد کنید</div>
-                <p style="text-align: center; margin-bottom: 20px; color: rgba(255,255,255,0.7);">
-                    کد ۵ رقمی به شماره <span id="forgotPhoneDisplay" style="color: var(--accent-color);"></span> ارسال
-                    شد
-                </p>
-
-                <div class="form-group">
-                    <label for="resetCode">کد ۵ رقمی</label>
-                    <div class="code-input">
-                        <input type="text" maxlength="1" class="reset-code-digit" required>
-                        <input type="text" maxlength="1" class="reset-code-digit" required>
-                        <input type="text" maxlength="1" class="reset-code-digit" required>
-                        <input type="text" maxlength="1" class="reset-code-digit" required>
-                        <input type="text" maxlength="1" class="reset-code-digit" required>
-                    </div>
-                </div>
-
-                <div class="resend-code">
-                    <span class="timer" id="resetTimer">02:00</span>
-                    <a id="resendResetCodeBtn" style="display: none;">ارسال مجدد کد</a>
-                </div>
-
-                <button type="button" id="verifyResetCodeBtn" class="btn">
-                    <span id="verifyResetCodeText">تأیید کد</span>
-                    <span id="verifyResetCodeSpinner" class="spinner" style="display: none;"></span>
-                </button>
+            <div class="input-group">
+                <input type="tel" id="forgotPhone" class="input-field" placeholder=" " required>
+                <i class="fas fa-mobile-alt input-icon"></i>
+                <label for="forgotPhone" class="input-label">شماره موبایل</label>
+                <div class="error-message" id="forgotPhoneError"></div>
             </div>
 
-            <!-- Forgot Password Step 3: New Password -->
-            <div id="resetPasswordSection" style="display: none;">
-                <div class="divider">رمز عبور جدید را وارد کنید</div>
+            <button class="btn" id="forgotPasswordBtn">
+                <i class="fas fa-paper-plane"></i> ارسال کد تایید
+            </button>
 
-                <div class="form-group">
-                    <label for="newPassword">رمز عبور جدید</label>
-                    <i class="fas fa-lock input-icon"></i>
-                    <i class="fas fa-eye password-toggle" id="newPasswordToggle"></i>
-                    <input type="password" id="newPassword" class="form-control" placeholder="رمز عبور جدید" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmNewPassword">تکرار رمز عبور جدید</label>
-                    <i class="fas fa-lock input-icon"></i>
-                    <i class="fas fa-eye password-toggle" id="confirmNewPasswordToggle"></i>
-                    <input type="password" id="confirmNewPassword" class="form-control"
-                        placeholder="تکرار رمز عبور جدید" required>
-                </div>
-
-                <button type="button" id="resetPasswordBtn" class="btn">
-                    <span id="resetPasswordText">تغییر رمز عبور</span>
-                    <span id="resetPasswordSpinner" class="spinner" style="display: none;"></span>
-                </button>
+            <div class="form-footer">
+                <a href="#" id="showLoginFromForgot">
+                    <i class="fas fa-arrow-right"></i> بازگشت به صفحه ورود
+                </a>
             </div>
+        </div>
+
+        <!-- فرم وارد کردن کد تایید -->
+        <div class="form" id="verifyCodeForm">
+            <div class="form-header">
+                <h2>تایید هویت</h2>
+                <p>کد ارسال شده به تلفن همراه را وارد کنید</p>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="verificationCode" class="input-field" placeholder=" " required>
+                <i class="fas fa-key input-icon"></i>
+                <label for="verificationCode" class="input-label">کد تایید ۶ رقمی</label>
+                <div class="error-message" id="verificationCodeError"></div>
+            </div>
+
+            <button class="btn" id="verifyCodeBtn">
+                <i class="fas fa-check"></i> تایید
+            </button>
+
+            <div class="form-footer">
+                <a href="#" id="resendCodeLink">
+                    <i class="fas fa-redo"></i> ارسال مجدد کد
+                </a>
+            </div>
+        </div>
+
+        <!-- فرم تغییر رمز عبور -->
+        <div class="form" id="resetPasswordForm">
+            <div class="form-header">
+                <h2>تغییر رمز عبور</h2>
+                <p>لطفاً رمز عبور جدید خود را وارد کنید</p>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="newPassword" class="input-field" placeholder=" " required>
+                <i class="fas fa-lock input-icon"></i>
+                <label for="newPassword" class="input-label">رمز عبور جدید</label>
+                <i class="fas fa-eye toggle-password" id="toggleNewPassword"></i>
+                <div class="error-message" id="newPasswordError"></div>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="confirmNewPassword" class="input-field" placeholder=" " required>
+                <i class="fas fa-lock input-icon"></i>
+                <label for="confirmNewPassword" class="input-label">تکرار رمز عبور جدید</label>
+                <i class="fas fa-eye toggle-password" id="toggleConfirmNewPassword"></i>
+                <div class="error-message" id="confirmNewPasswordError"></div>
+            </div>
+
+            <button class="btn" id="resetPasswordBtn">
+                <i class="fas fa-sync-alt"></i> تغییر رمز عبور
+            </button>
         </div>
     </div>
-
-    <div id="notification" class="notification"></div>
-
-     <script>
-        // Main Application Controller
-const LearinoAuth = (() => {
-  // DOM Elements
-  const elements = {
-    // Containers
-    loginBox: document.getElementById('loginBox'),
-    registerBox: document.getElementById('registerBox'),
-    forgotPasswordBox: document.getElementById('forgotPasswordBox'),
-    
-    // Forms
-    loginForm: document.getElementById('loginForm'),
-    registerForm: document.getElementById('registerForm'),
-    registerVerifySection: document.getElementById('registerVerifySection'),
-    forgotPasswordForm: document.getElementById('forgotPasswordForm'),
-    resetPasswordSection: document.getElementById('resetPasswordSection'),
-    
-    // Tabs
-    loginTab: document.getElementById('loginTab'),
-    registerTab: document.getElementById('registerTab'),
-    backToLoginTab: document.getElementById('backToLoginTab'),
-    
-    // Buttons
-    loginBtn: document.getElementById('loginBtn'),
-    registerBtn: document.getElementById('registerBtn'),
-    verifyRegisterBtn: document.getElementById('verifyRegisterBtn'),
-    resendRegisterCodeBtn: document.getElementById('resendRegisterCodeBtn'),
-    sendResetCodeBtn: document.getElementById('sendResetCodeBtn'),
-    resendResetCodeBtn: document.getElementById('resendResetCodeBtn'),
-    resetPasswordBtn: document.getElementById('resetPasswordBtn'),
-    
-    // Inputs
-    loginPhone: document.getElementById('loginPhone'),
-    loginPassword: document.getElementById('loginPassword'),
-    registerPhone: document.getElementById('registerPhone'),
-    forgotPhone: document.getElementById('forgotPhone'),
-    registerPhoneDisplay: document.getElementById('registerPhoneDisplay'),
-    forgotPhoneDisplay: document.getElementById('forgotPhoneDisplay'),
-    
-    // Code inputs
-    registerCodeDigits: document.querySelectorAll('.register-code-digit'),
-    resetCodeDigits: document.querySelectorAll('.reset-code-digit'),
-    
-    // Other
-    notification: document.getElementById('notification'),
-    registerTimer: document.getElementById('registerTimer'),
-    resetTimer: document.getElementById('resetTimer'),
-    captchaText: document.getElementById('captchaText'),
-    refreshCaptcha: document.getElementById('refreshCaptcha'),
-    captchaInput: document.getElementById('captchaInput')
-  };
-
-  // State variables
-  const state = {
-    registerCountdown: null,
-    registerCountdownTime: 120,
-    resetCountdown: null,
-    resetCountdownTime: 120,
-    generatedCaptcha: '',
-    registerCorrectCode: '',
-    resetCorrectCode: '',
-    currentForm: 'login'
-  };
-
-  // Initialize the application
-  function init() {
-    createParticles();
-    generateCaptcha();
-    setupEventListeners();
-    setInitialForm();
-  }
-
-  // Create background particles
-  function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 30;
-
-    for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div');
-      particle.classList.add('particle');
-      
-      const size = Math.random() * 4 + 2;
-      particle.style.width = `${size}px`;
-      particle.style.height = `${size}px`;
-      
-      particle.style.left = `${Math.random() * 100}%`;
-      particle.style.top = `${Math.random() * 100}%`;
-      
-      particle.style.animationDelay = `${Math.random() * 15}s`;
-      
-      const duration = Math.random() * 10 + 10;
-      particle.style.animationDuration = `${duration}s`;
-      
-      particle.style.opacity = Math.random() * 0.5 + 0.1;
-      
-      particlesContainer.appendChild(particle);
-    }
-  }
-
-  // Set up all event listeners
-  function setupEventListeners() {
-    // Tab navigation
-    elements.loginTab.addEventListener('click', () => showForm('login'));
-    elements.registerTab.addEventListener('click', () => showForm('register'));
-    elements.backToLoginTab.addEventListener('click', () => showForm('login'));
-    
-    // Form submissions
-    elements.loginBtn.addEventListener('click', handleLogin);
-    elements.registerBtn.addEventListener('click', handleRegisterStep1);
-    elements.verifyRegisterBtn.addEventListener('click', handleRegisterStep2);
-    elements.resendRegisterCodeBtn.addEventListener('click', resendRegisterCode);
-    elements.sendResetCodeBtn.addEventListener('click', handleSendResetCode);
-    elements.resendResetCodeBtn.addEventListener('click', resendResetCode);
-    elements.resetPasswordBtn.addEventListener('click', handleResetPassword);
-    
-    // Links
-    document.getElementById('registerLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      showForm('register');
-    });
-    
-    document.getElementById('forgotPasswordLink').addEventListener('click', (e) => {
-      e.preventDefault();
-      showForm('forgot');
-    });
-    
-    document.getElementById('backToLoginFromForgot').addEventListener('click', (e) => {
-      e.preventDefault();
-      showForm('login');
-    });
-    
-    // Handle code digit inputs
-    setupCodeInputs(elements.registerCodeDigits);
-    setupCodeInputs(elements.resetCodeDigits);
-    
-    // Password toggle events
-    setupPasswordToggles();
-    
-    // Captcha refresh
-    elements.refreshCaptcha.addEventListener('click', generateCaptcha);
-  }
-
-  // Set initial form based on URL or default
-  function setInitialForm() {
-    // You could check window.location.hash here to determine initial form
-    showForm('login');
-  }
-
-  // Show the specified form
-  function showForm(formName) {
-    state.currentForm = formName;
-    
-    // Hide all forms first
-    elements.loginBox.style.display = 'none';
-    elements.registerBox.style.display = 'none';
-    elements.forgotPasswordBox.style.display = 'none';
-    
-    // Reset tab states
-    elements.loginTab.classList.remove('active');
-    elements.registerTab.classList.remove('active');
-    
-    // Show the requested form
-    switch(formName) {
-      case 'login':
-        elements.loginBox.style.display = 'block';
-        elements.loginTab.classList.add('active');
-        break;
-      case 'register':
-        elements.registerBox.style.display = 'block';
-        elements.registerTab.classList.add('active');
-        elements.registerForm.style.display = 'block';
-        elements.registerVerifySection.style.display = 'none';
-        generateCaptcha();
-        break;
-      case 'forgot':
-        elements.forgotPasswordBox.style.display = 'block';
-        elements.forgotPasswordForm.style.display = 'block';
-        elements.resetPasswordSection.style.display = 'none';
-        break;
-    }
-  }
-
-  // Setup code input fields behavior
-  function setupCodeInputs(digits) {
-    digits.forEach((digit, index) => {
-      digit.addEventListener('input', () => {
-        if (digit.value.length === 1) {
-          if (index < digits.length - 1) {
-            digits[index + 1].focus();
-          }
-        }
-      });
-      
-      digit.addEventListener('keydown', (e) => {
-        if (e.key === 'Backspace' && digit.value.length === 0) {
-          if (index > 0) {
-            digits[index - 1].focus();
-          }
-        }
-      });
-    });
-  }
-
-  // Setup password toggle functionality
-  function setupPasswordToggles() {
-    const toggles = [
-      { input: elements.loginPassword, toggle: document.getElementById('loginPasswordToggle') },
-      { input: document.getElementById('registerPassword'), toggle: document.getElementById('registerPasswordToggle') },
-      { input: document.getElementById('confirmPassword'), toggle: document.getElementById('confirmPasswordToggle') },
-      { input: document.getElementById('currentPassword'), toggle: document.getElementById('currentPasswordToggle') },
-      { input: document.getElementById('newPassword'), toggle: document.getElementById('newPasswordToggle') },
-      { input: document.getElementById('confirmNewPassword'), toggle: document.getElementById('confirmNewPasswordToggle') }
-    ];
-    
-    toggles.forEach(({input, toggle}) => {
-      toggle.addEventListener('click', () => togglePasswordVisibility(input, toggle));
-    });
-  }
-
-  // Toggle password visibility
-  function togglePasswordVisibility(input, toggle) {
-    if (input.type === 'password') {
-      input.type = 'text';
-      toggle.classList.remove('fa-eye');
-      toggle.classList.add('fa-eye-slash');
-    } else {
-      input.type = 'password';
-      toggle.classList.remove('fa-eye-slash');
-      toggle.classList.add('fa-eye');
-    }
-  }
-
-  // Generate random captcha
-  function generateCaptcha() {
-    const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let captcha = '';
-    for (let i = 0; i < 6; i++) {
-      captcha += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    state.generatedCaptcha = captcha;
-    elements.captchaText.textContent = captcha;
-    elements.captchaInput.value = '';
-    return captcha;
-  }
-
-  // Validate captcha input
-  function validateCaptcha() {
-    return elements.captchaInput.value.trim().toUpperCase() === state.generatedCaptcha;
-  }
-
-  // Show notification message
-  function showNotification(type, message) {
-    elements.notification.textContent = message;
-    elements.notification.className = 'notification ' + type;
-    elements.notification.style.display = 'block';
-    
-    setTimeout(() => {
-      elements.notification.style.display = 'none';
-    }, 4000);
-  }
-
-  // Start register countdown timer
-  function startRegisterCountdown() {
-    clearInterval(state.registerCountdown);
-    state.registerCountdownTime = 120;
-    updateRegisterTimerDisplay();
-    
-    state.registerCountdown = setInterval(() => {
-      state.registerCountdownTime--;
-      updateRegisterTimerDisplay();
-      
-      if (state.registerCountdownTime <= 0) {
-        clearInterval(state.registerCountdown);
-        elements.resendRegisterCodeBtn.style.display = 'inline';
-        elements.registerTimer.style.display = 'none';
-      }
-    }, 1000);
-  }
-
-  // Update register timer display
-  function updateRegisterTimerDisplay() {
-    const minutes = Math.floor(state.registerCountdownTime / 60);
-    const seconds = state.registerCountdownTime % 60;
-    elements.registerTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-
-  // Start reset password countdown timer
-  function startResetCountdown() {
-    clearInterval(state.resetCountdown);
-    state.resetCountdownTime = 120;
-    updateResetTimerDisplay();
-    
-    state.resetCountdown = setInterval(() => {
-      state.resetCountdownTime--;
-      updateResetTimerDisplay();
-      
-      if (state.resetCountdownTime <= 0) {
-        clearInterval(state.resetCountdown);
-        elements.resendResetCodeBtn.style.display = 'inline';
-        elements.resetTimer.style.display = 'none';
-      }
-    }, 1000);
-  }
-
-  // Update reset timer display
-  function updateResetTimerDisplay() {
-    const minutes = Math.floor(state.resetCountdownTime / 60);
-    const seconds = state.resetCountdownTime % 60;
-    elements.resetTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-
-  // Handle login form submission
-  function handleLogin() {
-    const phoneOrUsername = elements.loginPhone.value.trim();
-    const password = elements.loginPassword.value.trim();
-    
-    if (!phoneOrUsername) {
-      showNotification('error', 'لطفاً نام کاربری یا شماره موبایل را وارد کنید');
-      return;
-    }
-    
-    if (!password) {
-      showNotification('error', 'لطفاً رمز عبور را وارد کنید');
-      return;
-    }
-    
-    // Show loading
-    toggleLoading(elements.loginBtn, true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      toggleLoading(elements.loginBtn, false);
-      
-      // Show success message
-      showNotification('success', 'ورود با موفقیت انجام شد');
-      
-      // Redirect to dashboard (simulated)
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 1000);
-    }, 1500);
-  }
-
-  // Handle register step 1 (basic info + captcha)
-  function handleRegisterStep1() {
-    const fullName = document.getElementById('fullName').value.trim();
-    const username = document.getElementById('username').value.trim();
-    const phone = elements.registerPhone.value.trim();
-    
-    // Validate inputs
-    if (!fullName) {
-      showNotification('error', 'لطفاً نام کامل را وارد کنید');
-      return;
-    }
-    
-    if (!username) {
-      showNotification('error', 'لطفاً نام کاربری را وارد کنید');
-      return;
-    }
-    
-    if (!phone || !/^09\d{9}$/.test(phone)) {
-      showNotification('error', 'لطفاً شماره موبایل معتبر وارد کنید');
-      return;
-    }
-    
-    if (!validateCaptcha()) {
-      showNotification('error', 'کد امنیتی نادرست است');
-      generateCaptcha();
-      return;
-    }
-    
-    // Show loading
-    toggleLoading(elements.registerBtn, true);
-    
-    // Generate random 5-digit code
-    state.registerCorrectCode = Math.floor(10000 + Math.random() * 90000).toString();
-    console.log('کد تأیید ثبت نام:', state.registerCorrectCode); // For testing only
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      toggleLoading(elements.registerBtn, false);
-      
-      // Show verification section
-      elements.registerForm.style.display = 'none';
-      elements.registerVerifySection.style.display = 'block';
-      elements.registerPhoneDisplay.textContent = phone;
-      
-      // Clear code inputs
-      clearCodeInputs(elements.registerCodeDigits);
-      
-      // Start countdown
-      startRegisterCountdown();
-      
-      // Focus first code digit
-      elements.registerCodeDigits[0].focus();
-    }, 1500);
-  }
-
-  // Handle register step 2 (verify code and set password)
-  function handleRegisterStep2() {
-    const code = getCodeFromDigits(elements.registerCodeDigits);
-    const password = document.getElementById('registerPassword').value.trim();
-    const confirmPass = document.getElementById('confirmPassword').value.trim();
-    
-    // Validate code
-    if (code.length !== 5 || !/^\d+$/.test(code)) {
-      showNotification('error', 'لطفاً کد ۵ رقمی را کامل وارد کنید');
-      return;
-    }
-    
-    if (code !== state.registerCorrectCode) {
-      showNotification('error', 'کد تأیید نادرست است');
-      return;
-    }
-    
-    if (password.length < 8) {
-      showNotification('error', 'رمز عبور باید حداقل ۸ کاراکتر باشد');
-      return;
-    }
-    
-    if (password !== confirmPass) {
-      showNotification('error', 'رمز عبور و تکرار آن مطابقت ندارند');
-      return;
-    }
-    
-    // Show loading
-    toggleLoading(elements.verifyRegisterBtn, true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      toggleLoading(elements.verifyRegisterBtn, false);
-      
-      // Show success message
-      showNotification('success', 'ثبت نام با موفقیت انجام شد');
-      
-      // Redirect to dashboard (simulated)
-      setTimeout(() => {
-        window.location.href = 'dashboard.html';
-      }, 1000);
-    }, 2000);
-  }
-
-  // Resend register verification code
-  function resendRegisterCode() {
-    // Reset countdown
-    clearInterval(state.registerCountdown);
-    state.registerCountdownTime = 120;
-    updateRegisterTimerDisplay();
-    
-    // Generate new code
-    state.registerCorrectCode = Math.floor(10000 + Math.random() * 90000).toString();
-    console.log('کد تأیید جدید:', state.registerCorrectCode); // For testing only
-    
-    // Hide resend button
-    elements.resendRegisterCodeBtn.style.display = 'none';
-    elements.registerTimer.style.display = 'inline';
-    
-    // Show loading
-    elements.resendRegisterCodeBtn.disabled = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      elements.resendRegisterCodeBtn.disabled = false;
-      
-      // Show success message
-      showNotification('success', 'کد تأیید جدید ارسال شد');
-      
-      // Clear code inputs
-      clearCodeInputs(elements.registerCodeDigits);
-      elements.registerCodeDigits[0].focus();
-      
-      // Start countdown
-      startRegisterCountdown();
-    }, 1000);
-  }
-
-  // Handle send reset code request
-  function handleSendResetCode() {
-    const phone = elements.forgotPhone.value.trim();
-    
-    if (!phone || !/^09\d{9}$/.test(phone)) {
-      showNotification('error', 'لطفاً شماره موبایل معتبر وارد کنید');
-      return;
-    }
-    
-    // Show loading
-    toggleLoading(elements.sendResetCodeBtn, true);
-    
-    // Generate random 5-digit code
-    state.resetCorrectCode = Math.floor(10000 + Math.random() * 90000).toString();
-    console.log('کد بازیابی:', state.resetCorrectCode); // For testing only
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      toggleLoading(elements.sendResetCodeBtn, false);
-      
-      // Show verification section
-      elements.forgotPasswordForm.style.display = 'none';
-      elements.resetPasswordSection.style.display = 'block';
-      elements.forgotPhoneDisplay.textContent = phone;
-      
-      // Clear code inputs
-      clearCodeInputs(elements.resetCodeDigits);
-      
-      // Start countdown
-      startResetCountdown();
-      
-      // Focus first code digit
-      elements.resetCodeDigits[0].focus();
-    }, 1500);
-  }
-
-  // Resend reset password code
-  function resendResetCode() {
-    // Reset countdown
-    clearInterval(state.resetCountdown);
-    state.resetCountdownTime = 120;
-    updateResetTimerDisplay();
-    
-    // Generate new code
-    state.resetCorrectCode = Math.floor(10000 + Math.random() * 90000).toString();
-    console.log('کد بازیابی جدید:', state.resetCorrectCode); // For testing only
-    
-    // Hide resend button
-    elements.resendResetCodeBtn.style.display = 'none';
-    elements.resetTimer.style.display = 'inline';
-    
-    // Show loading
-    elements.resendResetCodeBtn.disabled = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      elements.resendResetCodeBtn.disabled = false;
-      
-      // Show success message
-      showNotification('success', 'کد بازیابی جدید ارسال شد');
-      
-      // Clear code inputs
-      clearCodeInputs(elements.resetCodeDigits);
-      elements.resetCodeDigits[0].focus();
-      
-      // Start countdown
-      startResetCountdown();
-    }, 1000);
-  }
-
-  // Handle reset password submission
-  function handleResetPassword() {
-    const code = getCodeFromDigits(elements.resetCodeDigits);
-    const currentPass = document.getElementById('currentPassword').value.trim();
-    const newPass = document.getElementById('newPassword').value.trim();
-    const confirmPass = document.getElementById('confirmNewPassword').value.trim();
-    
-    // Validate code
-    if (code.length !== 5 || !/^\d+$/.test(code)) {
-      showNotification('error', 'لطفاً کد ۵ رقمی را کامل وارد کنید');
-      return;
-    }
-    
-    if (code !== state.resetCorrectCode) {
-      showNotification('error', 'کد بازیابی نادرست است');
-      return;
-    }
-    
-    if (!currentPass) {
-      showNotification('error', 'لطفاً رمز عبور فعلی را وارد کنید');
-      return;
-    }
-    
-    if (newPass.length < 8) {
-      showNotification('error', 'رمز عبور جدید باید حداقل ۸ کاراکتر باشد');
-      return;
-    }
-    
-    if (newPass !== confirmPass) {
-      showNotification('error', 'رمز عبور جدید و تکرار آن مطابقت ندارند');
-      return;
-    }
-    
-    // Show loading
-    toggleLoading(elements.resetPasswordBtn, true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      // Hide loading
-      toggleLoading(elements.resetPasswordBtn, false);
-      
-      // Show success message
-      showNotification('success', 'رمز عبور با موفقیت تغییر یافت');
-      
-      // Redirect to login (simulated)
-      setTimeout(() => {
-        showForm('login');
-      }, 1000);
-    }, 2000);
-  }
-
-  // Helper function to get code from digit inputs
-  function getCodeFromDigits(digits) {
-    let code = '';
-    digits.forEach(digit => {
-      code += digit.value;
-    });
-    return code;
-  }
-
-  // Helper function to clear code inputs
-  function clearCodeInputs(digits) {
-    digits.forEach(digit => digit.value = '');
-  }
-
-  // Helper function to toggle loading state
-  function toggleLoading(button, isLoading) {
-    button.disabled = isLoading;
-    const textSpan = button.querySelector('span:not(.spinner)');
-    const spinner = button.querySelector('.spinner');
-    
-    if (isLoading) {
-      textSpan.style.display = 'none';
-      spinner.style.display = 'inline-block';
-    } else {
-      textSpan.style.display = 'inline';
-      spinner.style.display = 'none';
-    }
-  }
-
-  // Public API
-  return {
-    init
-  };
-})();
-
-// Initialize the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', LearinoAuth.init);
-     </script>
+<script src="./javaScript/login.js"></script>
 
 </body>
 

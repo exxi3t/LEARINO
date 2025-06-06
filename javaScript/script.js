@@ -145,13 +145,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // تنظیم ارتفاع و اسکرول
-            setTimeout(() => {
-                document.body.style.minHeight = `${newPage.scrollHeight}px`;
-                window.scrollTo({
-                    top: pageScrollPositions[pageId] || 0,
-                    behavior: 'instant'
-                });
-            }, 10);
+            // setTimeout(() => {
+            //     document.body.style.minHeight = `${newPage.scrollHeight}px`;
+            //     window.scrollTo({
+            //         top: pageScrollPositions[pageId] || 0,
+            //         behavior: 'instant'
+            //     });
+            // }, 10);
         }
 
         // به روزرسانی فوتر
